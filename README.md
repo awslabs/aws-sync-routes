@@ -163,12 +163,16 @@ curl --data '{"destination-cidr-block":"<destination cidr block>", "dry-run": tr
 │   │   └── backend-config.json
 │   └── team-provider-info.json
 ├── docs/
-│   └── adr/
-│       ├── 0001-record-architecture-decisions.md
-│       ├── 0002-aws-amplify-cli-toolchain.md
-│       ├── 0003-http-patch-method.md
-│       ├── 0004-api-key.md
-│       └── 0005-uri.md
+│   ├── about/
+│   │   ├── contributing.md -> ../../CONTRIBUTING.md
+│   │   └── license.md -> ../../LICENSE
+│   ├── adr/
+│   │   ├── 0001-record-architecture-decisions.md
+│   │   ├── 0002-aws-amplify-cli-toolchain.md
+│   │   ├── 0003-http-patch-method.md
+│   │   ├── 0004-api-key.md
+│   │   └── 0005-uri.md
+│   └── index.md -> ../README.md
 ├── src/
 │   └── aws-exports.js
 ├── .adr-dir
