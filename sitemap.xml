@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+     <loc>https://awslabs.github.io/aws-sync-routes/</loc>
+     <lastmod>2019-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://awslabs.github.io/aws-sync-routes/adr/0001-record-architecture-decisions/</loc>
+     <lastmod>2019-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://awslabs.github.io/aws-sync-routes/about/contributing/</loc>
+     <lastmod>2019-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://awslabs.github.io/aws-sync-routes/about/license/</loc>
+     <lastmod>2019-06-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+</urlset>

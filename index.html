@@ -1,0 +1,890 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Synchronizes the specified route from the main/default route table to all custom route tables in the VPC.">
+      
+      
+        <link rel="canonical" href="https://awslabs.github.io/aws-sync-routes/">
+      
+      
+        <meta name="author" content="Amazon Web Services, Inc.">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.1.2">
+    
+    
+      
+        <title>AWS Sync Routes</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/application.3020aac5.css">
+      
+        <link rel="stylesheet" href="assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#232f3e">
+      
+    
+    
+      <script src="assets/javascripts/modernizr.01ccdecf.js"></script>
+    
+    
+      
+    
+    <link rel="stylesheet" href="assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="squid-ink" data-md-color-accent="deep-orange">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#aws-sync-routes" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://awslabs.github.io/aws-sync-routes/" title="AWS Sync Routes" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">home</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              AWS Sync Routes
+            </span>
+            <span class="md-header-nav__topic">
+              Home
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/awslabs/aws-sync-routes/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    aws-sync-routes
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+<nav class="md-tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="." title="Home" class="md-tabs__link md-tabs__link--active">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="adr/0001-record-architecture-decisions/" title="Architecture Decision Records" class="md-tabs__link">
+          Architecture Decision Records
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="about/contributing/" title="About" class="md-tabs__link">
+          About
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://awslabs.github.io/aws-sync-routes/" title="AWS Sync Routes" class="md-nav__button md-logo">
+      
+        <i class="md-icon">home</i>
+      
+    </a>
+    AWS Sync Routes
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/awslabs/aws-sync-routes/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    aws-sync-routes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Home
+      </label>
+    
+    <a href="." title="Home" class="md-nav__link md-nav__link--active">
+      Home
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" title="Prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-windows-users" title="For Windows users" class="md-nav__link">
+    For Windows users
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" title="Getting Started" class="md-nav__link">
+    Getting Started
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#request-requirements" title="Request requirements" class="md-nav__link">
+    Request requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" title="Usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-tree" title="Project tree" class="md-nav__link">
+    Project tree
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" title="License" class="md-nav__link">
+    License
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Architecture Decision Records
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Architecture Decision Records
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="adr/0001-record-architecture-decisions/" title="Record architecture decisions" class="md-nav__link">
+      Record architecture decisions
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      About
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        About
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="about/contributing/" title="Contributing Guidelines" class="md-nav__link">
+      Contributing Guidelines
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="about/license/" title="License" class="md-nav__link">
+      License
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" title="Prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-windows-users" title="For Windows users" class="md-nav__link">
+    For Windows users
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" title="Getting Started" class="md-nav__link">
+    Getting Started
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#request-requirements" title="Request requirements" class="md-nav__link">
+    Request requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" title="Usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-tree" title="Project tree" class="md-nav__link">
+    Project tree
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" title="License" class="md-nav__link">
+    License
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/awslabs/aws-sync-routes/blob/master/docs/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="aws-sync-routes">AWS Sync Routes<a class="headerlink" href="#aws-sync-routes" title="Permanent link">&para;</a></h1>
+<p>Synchronizes the specified route from the main/default route table to all custom route tables in the VPC.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://nodejs.org/">NodeJS 8.11+ or 10.15+</a></li>
+<li><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">AWS CLI</a></li>
+<li>Configured <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html">AWS CLI profile</a></li>
+<li><a href="https://github.com/aws-amplify/amplify-cli">AWS Amplify CLI toolchain</a></li>
+</ul>
+<h3 id="for-windows-users">For Windows users<a class="headerlink" href="#for-windows-users" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Windows Subsystem for Linux</a></li>
+</ul>
+<h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
+<ul>
+<li>From the project root, run <code>amplify env add</code>. This will:</li>
+<li>Map your <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html">AWS CLI profile</a> to a new <a href="https://aws-amplify.github.io/docs/cli/multienv#setting-up-master-and-dev-environments">AWS Amplify environment</a><ul>
+<li>NOTE: The default AWS region specified for your AWS CLI profile will be used, such as <code>us-east-1</code>.
+  Update the value (temporarily or otherwise) if you want the resources deployed elsewhere.</li>
+</ul>
+</li>
+<li>Deploy the root <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html">CloudFormation stack</a>, which includes the following default resources for an AWS Amplify CLI managed project:<ul>
+<li><a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html">S3 deployment bucket</a></li>
+<li><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html">CloudFormation root stack</a></li>
+<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM AuthRole</a></li>
+<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM UnauthRole</a></li>
+</ul>
+</li>
+<li>Create:<ul>
+<li><code>./amplify/team-provider-info.json</code>:</li>
+<li>Specifies the names and <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARNs</a> of the resources in the root stack for <strong><em>your</em></strong> environment.</li>
+<li><strong>IMPORTANT</strong>: Do not submit pull requests with <strong><em>your</em></strong> <code>./amplify/team-provider-info.json</code> file. Again, it contains information about your environment's resources.</li>
+<li>This file <em>should</em> be committed in <strong><em>your</em></strong> private repo and was intentionally excluded from <code>./.gitignore</code>.</li>
+<li>If you updated the default region for your AWS CLI profile and want to change it back, you can do so once this file exists because all of the other resources will be deployed to the region specified in this file.</li>
+<li><code>./amplify/backend/amplify-meta.json</code>:</li>
+<li>Compiled from <code>./amplify/backend/backend-config.json</code> and <code>./amplify/team-provider-info.json</code>.</li>
+<li>Specifies:<ul>
+<li>The managed <a href="https://aws-amplify.github.io/docs/cli/concept?sdk=js#category-plugin">backend categories</a></li>
+<li>Their dependencies</li>
+<li>Deployment information</li>
+</ul>
+</li>
+<li><code>./amplify/#current-cloud-backend/</code>: Directory containing the compiled version of the environment.</li>
+<li><code>./src/aws-exports.js</code>: Covered in the next step.</li>
+</ul>
+</li>
+<li>
+<p>The example below specifies an environment name of <code>dev</code>, an editor of <code>None</code>, and the <code>default</code> AWS CLI profile.
+    Adjust these for your use case.</p>
+<div class="codehilite"><pre><span></span>$ amplify env add
+Note: It is recommended to run this command from the root of your app directory
+? Enter a name for the environment dev
+? Choose your default editor:
+  Sublime Text
+  Visual Studio Code
+  Atom Editor
+  IDEA 14 CE
+  Vim (via Terminal, Mac OS only)
+  Emacs (via Terminal, Mac OS only)
+❯ None
+Using default provider  awscloudformation
+
+For more information on AWS Profiles, see:
+https://docs.aws.amazon.com/cli/latest/userguide/cli-multiple-profiles.html
+
+? Do you want to use an AWS profile? (Y/n)
+? Please choose the profile you want to use (Use arrow keys)
+❯ default
+⠼ Initializing project in the cloud...
+</pre></div>
+
+</li>
+<li>
+<p>Review the API request throttling parameters: <code>burstLimit</code> &amp; <code>rateLimit</code>, in <code>./amplify/backend/api/awssyncroutes/parameters.json</code> and update if necessary.</p>
+</li>
+<li>
+<p>Run <code>amplify push</code> to deploy the rest of the resources.</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span>$ amplify push
+
+Current Environment: dev
+
+| Category | Resource name | Operation | Provider plugin   |
+| -------- | ------------- | --------- | ----------------- |
+| Function | awssyncroutes | Create    | awscloudformation |
+| Api      | awssyncroutes | Create    | awscloudformation |
+? Are you sure you want to continue? (Y/n)
+</pre></div>
+
+<div class="codehilite"><pre><span></span>* This will create:
+  * `./src/aws-exports.js`: One place where you can find the root URL of the new API Gateway.
+  * `./amplify/backend/awscloudformation/nested-cloudformation-stack.yml`: Nested CloudFormation stack specification.
+* Also, the `S3Bucket` will be automatically populated in `./amplify/backend/function/awssyncroutes/awssyncroutes-cloudformation-template.json`.
+  * **IMPORTANT**: Do not submit pull requests with ***your*** S3 deployment bucket.
+</pre></div>
+
+
+<ul>
+<li>Once complete, retrieve the <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-basic-concept.html#apigateway-definition-api-key">API key</a>.</li>
+<li>
+<p>One way to do this:</p>
+<ul>
+<li><code>aws apigateway get-api-keys</code>: Copy the <code>id</code> value for the next command.</li>
+<li><code>aws apigateway get-api-key --include-value --api-key &lt;id&gt;</code>: Copy the <code>value</code> value.</li>
+</ul>
+</li>
+<li>
+<p>Now, you are ready to test the API endpoint.</p>
+</li>
+<li>
+<p>One way to do this:</p>
+<div class="codehilite"><pre><span></span>curl --data <span class="s1">&#39;{&quot;destination-cidr-block&quot;:&quot;&lt;destination cidr block&gt;&quot;, &quot;dry-run&quot;: true}&#39;</span> --header <span class="s2">&quot;X-API-Key: &lt;api key&gt;&quot;</span> --header <span class="s2">&quot;Content-Type: application/json&quot;</span> --request PATCH https://&lt;api gateway id&gt;.execute-api.&lt;region&gt;.amazonaws.com/&lt;stage name&gt;/vpcs/&lt;vpc id&gt;/route-tables/&lt;route table id&gt;
+</pre></div>
+
+</li>
+</ul>
+<h2 id="request-requirements">Request requirements<a class="headerlink" href="#request-requirements" title="Permanent link">&para;</a></h2>
+<p>Requests will only be accepted if the specified destination CIDR block:</p>
+<ul>
+<li>Is not the default <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html#RouteTables">local route</a>.</li>
+<li>Is not a <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html#RouteTables">propagated route</a>.</li>
+<li>Has an <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ElasticNetworkInterfaces.html">ENI</a> target.</li>
+<li>Is in an <code>active</code> state in the main route table.</li>
+</ul>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<p>There is only one API endpoint with two path parameters: <code>/vpcs/&lt;vpc id&gt;/route-tables/&lt;route table id&gt;</code> with a HTTP PATCH <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-basic-concept.html#apigateway-definition-method-request">request method</a>.</p>
+<p>NOTE: This implementation does not follow all of the <a href="https://tools.ietf.org/html/rfc5789">RFC5789</a> specifications for a HTTP PATCH method- it does not use a PATCH document and it is idempotent.</p>
+<table>
+<thead>
+<tr>
+<th>Path parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Example 1</th>
+<th>Example 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;vpc id&gt;</code></td>
+<td><code>true</code></td>
+<td>ID of the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html">VPC</a>.</td>
+<td><code>vpc-01234567</code></td>
+<td><code>vpc-0123456789abcdef0</code></td>
+</tr>
+<tr>
+<td><code>&lt;route table id&gt;</code></td>
+<td><code>true</code></td>
+<td>ID of the VPC's <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html#RouteTables">main route table</a>.</td>
+<td><code>rtb-01234567</code></td>
+<td><code>rtb-0123456789abcdef0</code></td>
+</tr>
+</tbody>
+</table>
+<p>The request body schema has one required property: <code>destination-cidr-block</code>, and one optional property: <code>dry-run</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Property name</th>
+<th>Required</th>
+<th>Description</th>
+<th>Example 1</th>
+<th>Example 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>destination-cidr-block</code></td>
+<td><code>true</code></td>
+<td>The IPv4 destination <a href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing">CIDR</a> block for the route.</td>
+<td><code>192.168.0.0/24</code></td>
+<td><code>172.30.0.0/16</code></td>
+</tr>
+<tr>
+<td><code>dry-run</code></td>
+<td><code>false</code></td>
+<td>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response.<br />If you have the required permissions, the error response is <code>DryRunOperation</code>; otherwise, it is <code>UnauthorizedOperation</code>.</td>
+<td><code>true</code></td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>curl --data <span class="s1">&#39;{&quot;destination-cidr-block&quot;:&quot;&lt;destination cidr block&gt;&quot;, &quot;dry-run&quot;: true}&#39;</span> --header <span class="s2">&quot;X-API-Key: &lt;api key&gt;&quot;</span> --header <span class="s2">&quot;Content-Type: application/json&quot;</span> --request PATCH https://&lt;api gateway id&gt;.execute-api.&lt;region&gt;.amazonaws.com/&lt;stage name&gt;/vpcs/&lt;vpc id&gt;/route-tables/&lt;route table id&gt;
+</pre></div>
+
+<h2 id="project-tree">Project tree<a class="headerlink" href="#project-tree" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>.
+├── amplify/
+│   ├── #current-cloud-backend/
+│   ├── .config/
+│   │   ├── local-aws-info.json
+│   │   ├── local-env-info.json
+│   │   └── project-config.json
+│   ├── backend/
+│   │   ├── api/
+│   │   │   └── awssyncroutes/
+│   │   │       ├── awssyncroutes-cloudformation-template.json
+│   │   │       └── parameters.json
+│   │   ├── awscloudformation/
+│   │   │   └── nested-cloudformation-stack.yml
+│   │   ├── function/
+│   │   │   └── awssyncroutes/
+│   │   │       ├── dist/
+│   │   │       ├── src/
+│   │   │       │   ├── node_modules/
+│   │   │       │   ├── app.js
+│   │   │       │   ├── index.js
+│   │   │       │   ├── package-lock.json
+│   │   │       │   └── package.json
+│   │   │       ├── awssyncroutes-cloudformation-template.json
+│   │   │       └── parameters.json
+│   │   ├── amplify-meta.json
+│   │   └── backend-config.json
+│   └── team-provider-info.json
+├── docs/
+│   ├── about/
+│   │   ├── contributing.md -&gt; ../../CONTRIBUTING.md
+│   │   └── license.md -&gt; ../../LICENSE
+│   ├── adr/
+│   │   ├── 0001-record-architecture-decisions.md
+│   │   ├── 0002-aws-amplify-cli-toolchain.md
+│   │   ├── 0003-http-patch-method.md
+│   │   ├── 0004-api-key.md
+│   │   └── 0005-uri.md
+│   └── index.md -&gt; ../README.md
+├── src/
+│   └── aws-exports.js
+├── .adr-dir
+├── .editorconfig
+├── .eslintrc.js
+├── .gitignore
+└── README.md
+</pre></div>
+
+<p><em>The project tree was generated with the following command:</em></p>
+<div class="codehilite"><pre><span></span>tree -aFL <span class="m">6</span> --dirsfirst --noreport -I <span class="s2">&quot;.git|*-latest-build.zip&quot;</span>
+</pre></div>
+
+<h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
+<p>This library is licensed under the Apache 2.0 License.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+        
+          <a href="adr/0001-record-architecture-decisions/" title="Record architecture decisions" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Record architecture decisions
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright 2019, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.css">
+    
+      <a href="https://aws.amazon.com/" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/awslabs/aws-sync-routes" class="md-footer-social__link fa fa-github-alt"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="assets/javascripts/application.267712eb.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
+      
+        <script src="search/main.js"></script>
+      
+    
+  </body>
+</html>
