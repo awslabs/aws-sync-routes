@@ -55,7 +55,7 @@ markdown_extensions:
   - markdown.extensions.def_list
   - markdown.extensions.footnotes
   - markdown.extensions.meta
-  - markdown.extensions.toc:e
+  - markdown.extensions.toc:
       permalink: true
   - pymdownx.arithmatex
   - pymdownx.betterem:
