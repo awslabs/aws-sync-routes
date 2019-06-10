@@ -1,0 +1,83 @@
+# https://www.mkdocs.org/user-guide/configuration/
+
+# Project information
+site_name: 'AWS Sync Routes'
+site_description: 'Synchronizes the specified route from the main/default route table to all custom route tables in the VPC.'
+site_author: 'Amazon Web Services, Inc.'
+site_url: 'https://awslabs.github.io/aws-sync-routes/'
+
+# Repository
+repo_name: 'aws-sync-routes'
+repo_url: 'https://github.com/awslabs/aws-sync-routes'
+remote_branch: 'gh-pages'
+edit_uri: 'blob/master/docs/'
+
+# Copyright
+copyright: 'Copyright 2019, Amazon Web Services, Inc. or its affiliates. All rights reserved.'
+
+# Configuration
+theme:
+  name: 'material'
+
+  # 404 page
+  static_templates:
+    - '404.html'
+
+  # Don't include MkDocs' JavaScript
+  include_search_page: false
+  search_index_only: false
+
+  # Theme
+  language: 'en'
+  feature:
+    tabs: true
+  palette:
+    primary: 'squid-ink'
+    accent: 'deep-orange'
+  font: false
+  logo:
+    icon:
+      'home'
+
+# Customization
+extra:
+  social:
+    - type: 'globe'
+      link: 'https://aws.amazon.com/'
+    - type: 'github-alt'
+      link: 'https://github.com/awslabs/aws-sync-routes'
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - markdown.extensions.codehilite:
+      guess_lang: false
+  - markdown.extensions.def_list
+  - markdown.extensions.footnotes
+  - markdown.extensions.meta
+  - markdown.extensions.toc:e
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Page tree
+nav:
+  - Home: 'index.md'
+  - About:
+    - Contributing Guidelines: 'about/contributing.md'
+    - License: 'about/license.md'
