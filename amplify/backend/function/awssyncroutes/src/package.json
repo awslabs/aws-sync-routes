@@ -1,0 +1,19 @@
+{
+  "name": "awssyncroutes",
+  "version": "1.0.0",
+  "description": "Sync specific routes from the main/default route table to a custom route table.",
+  "author": "Amazon Web Services, Inc.",
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "dependencies": {
+    "async-each": "^1.0.3",
+    "aws-sdk": "^2.466.0",
+    "aws-serverless-express": "^3.3.5",
+    "body-parser": "^1.17.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
