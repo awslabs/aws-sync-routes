@@ -2,6 +2,10 @@
 
 Synchronizes the specified route from the main/default route table to all custom route tables in the VPC.
 
+## Architecture
+
+![Architecture](./docs/images/Architecture.png)
+
 ## Prerequisites
 
 * [NodeJS 8.11+ or 10.15+](https://nodejs.org/)
@@ -172,6 +176,8 @@ curl --data '{"destination-cidr-block":"<destination cidr block>", "dry-run": tr
 │   │   ├── 0003-http-patch-method.md
 │   │   ├── 0004-api-key.md
 │   │   └── 0005-uri.md
+│   ├── images/
+│   │   └── Architecture.png
 │   └── index.md -> ../README.md
 ├── src/
 │   └── aws-exports.js
