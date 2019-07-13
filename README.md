@@ -2,13 +2,15 @@
 
 Synchronizes the specified route from the main/default route table to all custom route tables in the VPC.
 
-The primary use case is for syncing routes to VMware Cloud on AWS (VMC) software defined data center (SDDC) logical networks. At present, these routes are only programmatically managed in the main/default route table, so this tool can help customers that require custom route tables, but VMC is not a requirement. This could be used in any AWS account for synching routes from the main route to custom route tables.
-
-Of note, only adds & updates are synced- not deletes.
-
 ## Architecture
 
-![Architecture](./Architecture.png)
+### Architecture diagram
+
+![Architecture diagram](./Architecture.png 'Architecture diagram')
+
+### Infrastructure as code diagram
+
+![Infrastucture as code diagram](./InfrastructureAsCode.png 'Infrastucture as code diagram')
 
 ## Prerequisites
 
@@ -181,6 +183,7 @@ curl --data '{"destination-cidr-block":"<destination cidr block>", "dry-run": tr
 │   │   ├── 0004-api-key.md
 │   │   └── 0005-uri.md
 │   ├── Architecture.png -> ../Architecture.png
+│   ├── InfrastructureAsCode.png -> ../InfrastructureAsCode.png
 │   └── index.md -> ../README.md
 ├── src/
 │   └── aws-exports.js
@@ -189,6 +192,7 @@ curl --data '{"destination-cidr-block":"<destination cidr block>", "dry-run": tr
 ├── .eslintrc.js
 ├── .gitignore
 ├── Architecture.png
+├── InfrastructureAsCode.png
 └── README.md
 ```
 
