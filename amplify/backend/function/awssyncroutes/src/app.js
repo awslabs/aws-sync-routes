@@ -124,10 +124,9 @@ function getCustomRouteTables(routeTables, mainRouteTableId) {
   return customRouteTables;
 }
 
-/*******************************************************************************************
- * HTTP Patch method to sync routes from a main/default route table to custom route tables *
- *******************************************************************************************/
-
+/**
+ * HTTP Patch method to sync routes from a main/default route table to custom route tables
+ */
 app.patch('/vpcs/:vpcId/route-tables/:routeTableId', async (req, res) => {
   //#region Set request data to constants to prevent manipulation
   const vpcId = req.params.vpcId;
@@ -420,20 +419,18 @@ app.patch('/vpcs/:vpcId/route-tables/:routeTableId', async (req, res) => {
   //#endregion
 });
 
-/*****************************
- * Reject all other requests *
- *****************************/
-
+/**
+ * Reject all other requests
+ */
 app.all('/*', (req, res) => {
   res.statusCode = 400;
   res.statusMessage = 'Bad Request';
   res.json({ message: 'Invalid request.' });
 });
 
-/********************************
- * Start the application server *
- ********************************/
-
+/**
+ * Start the application server
+ */
 app.listen(3000, () => {
   console.log('App started');
 });
