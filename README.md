@@ -6,17 +6,17 @@ Synchronizes the specified route from the main/default route table to all custom
 
 ### Architecture diagram
 
-![Architecture diagram](./Architecture.png 'Architecture diagram')
+![architecture_diagram](./Architecture.png 'Architecture diagram')
 
 ### Infrastructure as code diagram
 
-![Infrastucture as code diagram](./InfrastructureAsCode.png 'Infrastucture as code diagram')
+![infrastucture_as_code_diagram](./InfrastructureAsCode.png 'Infrastucture as code diagram')
 
 ## Prerequisites
 
 * [NodeJS 8.11+ or 10.15+](https://nodejs.org/)
 * [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
-  * Configured [AWS CLI profile][profile]
+    * Configured [AWS CLI profile][profile]
 * [AWS Amplify CLI toolchain](https://github.com/aws-amplify/amplify-cli)
 
 ### For Windows users
@@ -26,53 +26,53 @@ Synchronizes the specified route from the main/default route table to all custom
 ## Getting Started
 
 * From the project root, run `amplify env add`. This will:
-  * Map your [AWS CLI profile][profile] to a new [AWS Amplify environment](https://aws-amplify.github.io/docs/cli/multienv#setting-up-master-and-dev-environments)
+    * Map your [AWS CLI profile][profile] to a new [AWS Amplify environment](https://aws-amplify.github.io/docs/cli/multienv#setting-up-master-and-dev-environments)
     * NOTE: The default AWS region specified for your AWS CLI profile will be used, such as `us-east-1`.
       Update the value (temporarily or otherwise) if you want the resources deployed elsewhere.
-  * Deploy the root [CloudFormation stack][cfn_stack], which includes the following default resources for an AWS Amplify CLI managed project:
-    * [S3 deployment bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html)
-    * [CloudFormation root stack][cfn_stack]
-    * [IAM AuthRole][iam_role]
-    * [IAM UnauthRole][iam_role]
-  * Create:
-    * `./amplify/team-provider-info.json`:
-      * Specifies the names and [ARNs](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the resources in the root stack for ***your*** environment.
-      * **IMPORTANT**: Do not submit pull requests with ***your*** `./amplify/team-provider-info.json` file. Again, it contains information about your environment's resources.
-      * This file *should* be committed in ***your*** private repo and was intentionally excluded from `./.gitignore`.
-      * If you updated the default region for your AWS CLI profile and want to change it back, you can do so once this file exists because all of the other resources will be deployed to the region specified in this file.
-    * `./amplify/backend/amplify-meta.json`:
-      * Compiled from `./amplify/backend/backend-config.json` and `./amplify/team-provider-info.json`.
-      * Specifies:
-        * The managed [backend categories](https://aws-amplify.github.io/docs/cli/concept?sdk=js#category-plugin)
-        * Their dependencies
-        * Deployment information
-    * `./amplify/#current-cloud-backend/`: Directory containing the compiled version of the environment.
-    * `./src/aws-exports.js`: Covered in the next step.
-  * The example below specifies an environment name of `dev`, an editor of `None`, and the `default` AWS CLI profile.
-    Adjust these for your use case.
+    * Deploy the root [CloudFormation stack][cfn_stack], which includes the following default resources for an AWS Amplify CLI managed project:
+        * [S3 deployment bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html)
+        * [CloudFormation root stack][cfn_stack]
+        * [IAM AuthRole][iam_role]
+        * [IAM UnauthRole][iam_role]
+    * Create:
+        * `./amplify/team-provider-info.json`:
+            * Specifies the names and [ARNs](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the resources in the root stack for ***your*** environment.
+            * **IMPORTANT**: Do not submit pull requests with ***your*** `./amplify/team-provider-info.json` file. Again, it contains information about your environment's resources.
+            * This file *should* be committed in ***your*** private repo and was intentionally excluded from `./.gitignore`.
+            * If you updated the default region for your AWS CLI profile and want to change it back, you can do so once this file exists because all of the other resources will be deployed to the region specified in this file.
+        * `./amplify/backend/amplify-meta.json`:
+            * Compiled from `./amplify/backend/backend-config.json` and `./amplify/team-provider-info.json`.
+            * Specifies:
+                * The managed [backend categories](https://aws-amplify.github.io/docs/cli/concept?sdk=js#category-plugin)
+                * Their dependencies
+                * Deployment information
+        * `./amplify/#current-cloud-backend/`: Directory containing the compiled version of the environment.
+        * `./src/aws-exports.js`: Covered in the next step.
+    * The example below specifies an environment name of `dev`, an editor of `None`, and the `default` AWS CLI profile.
+      Adjust these for your use case.
 
-    ```text
-    $ amplify env add
-    Note: It is recommended to run this command from the root of your app directory
-    ? Enter a name for the environment dev
-    ? Choose your default editor:
-      Sublime Text
-      Visual Studio Code
-      Atom Editor
-      IDEA 14 CE
-      Vim (via Terminal, Mac OS only)
-      Emacs (via Terminal, Mac OS only)
-    ❯ None
-    Using default provider  awscloudformation
+      ```text
+      $ amplify env add
+      Note: It is recommended to run this command from the root of your app directory
+      ? Enter a name for the environment dev
+      ? Choose your default editor:
+        Sublime Text
+        Visual Studio Code
+        Atom Editor
+        IDEA 14 CE
+        Vim (via Terminal, Mac OS only)
+        Emacs (via Terminal, Mac OS only)
+      ❯ None
+      Using default provider  awscloudformation
 
-    For more information on AWS Profiles, see:
-    https://docs.aws.amazon.com/cli/latest/userguide/cli-multiple-profiles.html
+      For more information on AWS Profiles, see:
+      https://docs.aws.amazon.com/cli/latest/userguide/cli-multiple-profiles.html
 
-    ? Do you want to use an AWS profile? (Y/n)
-    ? Please choose the profile you want to use (Use arrow keys)
-    ❯ default
-    ⠼ Initializing project in the cloud...
-    ```
+      ? Do you want to use an AWS profile? (Y/n)
+      ? Please choose the profile you want to use (Use arrow keys)
+      ❯ default
+      ⠼ Initializing project in the cloud...
+      ```
 
 * Review the API request throttling parameters: `burstLimit` & `rateLimit`, in `./amplify/backend/api/awssyncroutes/parameters.json` and update if necessary.
 
@@ -91,22 +91,22 @@ Synchronizes the specified route from the main/default route table to all custom
   ```
 
     * This will create:
-      * `./src/aws-exports.js`: One place where you can find the root URL of the new API Gateway.
-      * `./amplify/backend/awscloudformation/nested-cloudformation-stack.yml`: Nested CloudFormation stack specification.
+        * `./src/aws-exports.js`: One place where you can find the root URL of the new API Gateway.
+        * `./amplify/backend/awscloudformation/nested-cloudformation-stack.yml`: Nested CloudFormation stack specification.
     * Also, the `S3Bucket` will be automatically populated in `./amplify/backend/function/awssyncroutes/awssyncroutes-cloudformation-template.json`.
-      * **IMPORTANT**: Do not submit pull requests with ***your*** S3 deployment bucket.
+        * **IMPORTANT**: Do not submit pull requests with ***your*** S3 deployment bucket.
 
 * Once complete, retrieve the [API key](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-basic-concept.html#apigateway-definition-api-key).
-  * One way to do this:
-    * `aws apigateway get-api-keys`: Copy the `id` value for the next command.
-    * `aws apigateway get-api-key --include-value --api-key <id>`: Copy the `value` value.
+    * One way to do this:
+        * `aws apigateway get-api-keys`: Copy the `id` value for the next command.
+        * `aws apigateway get-api-key --include-value --api-key <id>`: Copy the `value` value.
 
 * Now, you are ready to test the API endpoint.
-  * One way to do this:
+    * One way to do this:
 
-    ```sh
-    curl --data '{"destination-cidr-block":"<destination cidr block>", "dry-run": true}' --header "X-API-Key: <api key>" --header "Content-Type: application/json" --request PATCH https://<api gateway id>.execute-api.<region>.amazonaws.com/<stage name>/vpcs/<vpc id>/route-tables/<route table id>
-    ```
+      ```sh
+      curl --data '{"destination-cidr-block":"<destination cidr block>", "dry-run": true}' --header "X-API-Key: <api key>" --header "Content-Type: application/json" --request PATCH https://<api gateway id>.execute-api.<region>.amazonaws.com/<stage name>/vpcs/<vpc id>/route-tables/<route table id>
+      ```
 
 ## Request requirements
 
