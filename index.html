@@ -270,6 +270,26 @@
     Architecture
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture-diagram" title="Architecture diagram" class="md-nav__link">
+    Architecture diagram
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#infrastructure-as-code-diagram" title="Infrastructure as code diagram" class="md-nav__link">
+    Infrastructure as code diagram
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -502,6 +522,26 @@
     Architecture
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture-diagram" title="Architecture diagram" class="md-nav__link">
+    Architecture diagram
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#infrastructure-as-code-diagram" title="Infrastructure as code diagram" class="md-nav__link">
+    Infrastructure as code diagram
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -587,15 +627,18 @@
                 
                 <h1 id="aws-sync-routes">AWS Sync Routes<a class="headerlink" href="#aws-sync-routes" title="Permanent link">&para;</a></h1>
 <p>Synchronizes the specified route from the main/default route table to all custom route tables in the VPC.</p>
-<p>The primary use case is for syncing routes to VMware Cloud on AWS (VMC) software defined data center (SDDC) logical networks. At present, these routes are only programmatically managed in the main/default route table, so this tool can help customers that require custom route tables, but VMC is not a requirement. This could be used in any AWS account for synching routes from the main route to custom route tables.</p>
-<p>Of note, only adds &amp; updates are synced- not deletes.</p>
 <h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
-<p><img alt="Architecture" src="Architecture.png" /></p>
+<h3 id="architecture-diagram">Architecture diagram<a class="headerlink" href="#architecture-diagram" title="Permanent link">&para;</a></h3>
+<p><img alt="architecture_diagram" src="Architecture.png" title="Architecture diagram" /></p>
+<h3 id="infrastructure-as-code-diagram">Infrastructure as code diagram<a class="headerlink" href="#infrastructure-as-code-diagram" title="Permanent link">&para;</a></h3>
+<p><img alt="infrastucture_as_code_diagram" src="InfrastructureAsCode.png" title="Infrastucture as code diagram" /></p>
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://nodejs.org/">NodeJS 8.11+ or 10.15+</a></li>
-<li><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">AWS CLI</a></li>
+<li><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">AWS CLI</a><ul>
 <li>Configured <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html">AWS CLI profile</a></li>
+</ul>
+</li>
 <li><a href="https://github.com/aws-amplify/amplify-cli">AWS Amplify CLI toolchain</a></li>
 </ul>
 <h3 id="for-windows-users">For Windows users<a class="headerlink" href="#for-windows-users" title="Permanent link">&para;</a></h3>
@@ -604,12 +647,12 @@
 </ul>
 <h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
 <ul>
-<li>From the project root, run <code>amplify env add</code>. This will:</li>
-<li>Map your <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html">AWS CLI profile</a> to a new <a href="https://aws-amplify.github.io/docs/cli/multienv#setting-up-master-and-dev-environments">AWS Amplify environment</a><ul>
+<li>
+<p>From the project root, run <code>amplify env add</code>. This will:</p>
+<ul>
+<li>Map your <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html">AWS CLI profile</a> to a new <a href="https://aws-amplify.github.io/docs/cli/multienv#setting-up-master-and-dev-environments">AWS Amplify environment</a></li>
 <li>NOTE: The default AWS region specified for your AWS CLI profile will be used, such as <code>us-east-1</code>.
   Update the value (temporarily or otherwise) if you want the resources deployed elsewhere.</li>
-</ul>
-</li>
 <li>Deploy the root <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html">CloudFormation stack</a>, which includes the following default resources for an AWS Amplify CLI managed project:<ul>
 <li><a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html">S3 deployment bucket</a></li>
 <li><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html">CloudFormation root stack</a></li>
@@ -618,12 +661,14 @@
 </ul>
 </li>
 <li>Create:<ul>
-<li><code>./amplify/team-provider-info.json</code>:</li>
+<li><code>./amplify/team-provider-info.json</code>:<ul>
 <li>Specifies the names and <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARNs</a> of the resources in the root stack for <strong><em>your</em></strong> environment.</li>
 <li><strong>IMPORTANT</strong>: Do not submit pull requests with <strong><em>your</em></strong> <code>./amplify/team-provider-info.json</code> file. Again, it contains information about your environment's resources.</li>
 <li>This file <em>should</em> be committed in <strong><em>your</em></strong> private repo and was intentionally excluded from <code>./.gitignore</code>.</li>
 <li>If you updated the default region for your AWS CLI profile and want to change it back, you can do so once this file exists because all of the other resources will be deployed to the region specified in this file.</li>
-<li><code>./amplify/backend/amplify-meta.json</code>:</li>
+</ul>
+</li>
+<li><code>./amplify/backend/amplify-meta.json</code>:<ul>
 <li>Compiled from <code>./amplify/backend/backend-config.json</code> and <code>./amplify/team-provider-info.json</code>.</li>
 <li>Specifies:<ul>
 <li>The managed <a href="https://aws-amplify.github.io/docs/cli/concept?sdk=js#category-plugin">backend categories</a></li>
@@ -631,13 +676,15 @@
 <li>Deployment information</li>
 </ul>
 </li>
+</ul>
+</li>
 <li><code>./amplify/#current-cloud-backend/</code>: Directory containing the compiled version of the environment.</li>
 <li><code>./src/aws-exports.js</code>: Covered in the next step.</li>
 </ul>
 </li>
-<li>
-<p>The example below specifies an environment name of <code>dev</code>, an editor of <code>None</code>, and the <code>default</code> AWS CLI profile.
-    Adjust these for your use case.</p>
+<li>The example below specifies an environment name of <code>dev</code>, an editor of <code>None</code>, and the <code>default</code> AWS CLI profile.
+  Adjust these for your use case.</li>
+</ul>
 <div class="codehilite"><pre><span></span>$ amplify env add
 Note: It is recommended to run this command from the root of your app directory
 ? Enter a name for the environment dev
@@ -680,27 +727,29 @@ Current Environment: dev
 </pre></div>
 
 <div class="codehilite"><pre><span></span>* This will create:
-  * `./src/aws-exports.js`: One place where you can find the root URL of the new API Gateway.
-  * `./amplify/backend/awscloudformation/nested-cloudformation-stack.yml`: Nested CloudFormation stack specification.
+    * `./src/aws-exports.js`: One place where you can find the root URL of the new API Gateway.
+    * `./amplify/backend/awscloudformation/nested-cloudformation-stack.yml`: Nested CloudFormation stack specification.
 * Also, the `S3Bucket` will be automatically populated in `./amplify/backend/function/awssyncroutes/awssyncroutes-cloudformation-template.json`.
-  * **IMPORTANT**: Do not submit pull requests with ***your*** S3 deployment bucket.
+    * **IMPORTANT**: Do not submit pull requests with ***your*** S3 deployment bucket.
 </pre></div>
 
 
 <ul>
-<li>Once complete, retrieve the <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-basic-concept.html#apigateway-definition-api-key">API key</a>.</li>
 <li>
-<p>One way to do this:</p>
+<p>Once complete, retrieve the <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-basic-concept.html#apigateway-definition-api-key">API key</a>.</p>
 <ul>
+<li>One way to do this:<ul>
 <li><code>aws apigateway get-api-keys</code>: Copy the <code>id</code> value for the next command.</li>
 <li><code>aws apigateway get-api-key --include-value --api-key &lt;id&gt;</code>: Copy the <code>value</code> value.</li>
 </ul>
 </li>
-<li>
-<p>Now, you are ready to test the API endpoint.</p>
+</ul>
 </li>
 <li>
-<p>One way to do this:</p>
+<p>Now, you are ready to test the API endpoint.</p>
+<ul>
+<li>One way to do this:</li>
+</ul>
 <div class="codehilite"><pre><span></span>curl --data <span class="s1">&#39;{&quot;destination-cidr-block&quot;:&quot;&lt;destination cidr block&gt;&quot;, &quot;dry-run&quot;: true}&#39;</span> --header <span class="s2">&quot;X-API-Key: &lt;api key&gt;&quot;</span> --header <span class="s2">&quot;Content-Type: application/json&quot;</span> --request PATCH https://&lt;api gateway id&gt;.execute-api.&lt;region&gt;.amazonaws.com/&lt;stage name&gt;/vpcs/&lt;vpc id&gt;/route-tables/&lt;route table id&gt;
 </pre></div>
 
@@ -816,6 +865,7 @@ Current Environment: dev
 │   │   ├── 0004-api-key.md
 │   │   └── 0005-uri.md
 │   ├── Architecture.png -&gt; ../Architecture.png
+│   ├── InfrastructureAsCode.png -&gt; ../InfrastructureAsCode.png
 │   └── index.md -&gt; ../README.md
 ├── src/
 │   └── aws-exports.js
@@ -824,6 +874,7 @@ Current Environment: dev
 ├── .eslintrc.js
 ├── .gitignore
 ├── Architecture.png
+├── InfrastructureAsCode.png
 └── README.md
 </pre></div>
 
