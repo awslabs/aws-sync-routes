@@ -127,36 +127,12 @@ function getCustomRouteTables(routeTables, mainRouteTableId) {
 /**
  * HTTP Patch method to sync routes from a main/default route table to custom route tables
  */
-app.patch('/vpcs/:vpcId/route-tables/:routeTableId', async (req, res) => {
+app.patch('/vpcs/:vpcId(vpc-[0-9a-f]{8}|vpc-[0-9a-f]{17})/route-tables/:routeTableId(rtb-[0-9a-f]{8}|rtb-[0-9a-f]{17})', async (req, res) => {
   //#region Set request data to constants to prevent manipulation
-  const vpcId = req.params.vpcId;
-  const routeTableId = req.params.routeTableId;
+  const vpcId = req.params.vpcId.toLowerCase();
+  const routeTableId = req.params.routeTableId.toLowerCase();
   const destinationCidrBlock = req.body['destination-cidr-block'];
   const dryRun = req.body['dry-run'] || false;
-  //#endregion
-
-  //#region Validate path parameters
-  if (typeof vpcId !== 'string') {
-    res.statusCode = 400;
-    res.statusMessage = 'Bad Request';
-    res.json({ message: 'Invalid VPC ID value.' });
-    return;
-  } else if (!vpcId.match(/^vpc-[a-f0-9]{8}(?:[a-f0-9]{9})?$/)) {
-    res.statusCode = 400;
-    res.statusMessage = 'Bad Request';
-    res.json({ message: 'Invalid VPC ID value.' });
-    return;
-  } else if (typeof routeTableId !== 'string') {
-    res.statusCode = 400;
-    res.statusMessage = 'Bad Request';
-    res.json({ message: 'Invalid Route Table ID value.' });
-    return;
-  } else if (!routeTableId.match(/^rtb-[a-f0-9]{8}(?:[a-f0-9]{9})?$/)) {
-    res.statusCode = 400;
-    res.statusMessage = 'Bad Request';
-    res.json({ message: 'Invalid Route Table ID value.' });
-    return;
-  }
   //#endregion
 
   //#region Get VPC route table descriptions & validate

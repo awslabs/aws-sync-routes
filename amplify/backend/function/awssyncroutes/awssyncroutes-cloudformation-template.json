@@ -57,7 +57,7 @@
 				"Timeout": 25,
 				"Code": {
 					"S3Bucket": "",
-					"S3Key": "amplify-builds/awssyncroutes-1560189885-latest-build.zip"
+					"S3Key": "amplify-builds/awssyncroutes-5a643956535338526152-build.zip"
 				}
 			}
 		},
