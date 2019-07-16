@@ -18,6 +18,7 @@ copyright: 'Copyright 2019, Amazon Web Services, Inc. or its affiliates. All rig
 # Configuration
 theme:
   name: 'material'
+  custom_dir: 'material'
 
   # 404 page
   static_templates:
