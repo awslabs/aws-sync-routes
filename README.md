@@ -146,6 +146,8 @@ curl --data '{"destination-cidr-block":"<destination cidr block>", "dry-run": tr
 
 ```text
 .
+├── .github/
+│   └── PULL_REQUEST_TEMPLATE.md
 ├── amplify/
 │   ├── #current-cloud-backend/
 │   ├── .config/
@@ -186,15 +188,27 @@ curl --data '{"destination-cidr-block":"<destination cidr block>", "dry-run": tr
 │   ├── Architecture.png -> ../Architecture.png
 │   ├── InfrastructureAsCode.png -> ../InfrastructureAsCode.png
 │   └── index.md -> ../README.md
+├── material/
+│   ├── assets/
+│   │   └── stylesheets/
+│   │       ├── application-palette.css
+│   │       └── application.css
+│   ├── partials/
+│   │   └── palette.html
+│   └── main.html
 ├── src/
 │   └── aws-exports.js
 ├── .adr-dir
 ├── .editorconfig
 ├── .eslintrc.js
 ├── .gitignore
+├── .markdownlint.yml
 ├── Architecture.png
 ├── InfrastructureAsCode.png
-└── README.md
+├── LICENSE
+├── NOTICE
+├── README.md
+└── mkdocs.yml
 ```
 
 *The project tree was generated with the following command:*
