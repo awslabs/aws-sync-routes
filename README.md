@@ -1,6 +1,8 @@
 # AWS Sync Routes
 
-Synchronizes the specified route from the main/default route table to all custom route tables in the VPC.
+Synchronizes the specified route from the [main/default route table][rtb] to all [custom route tables][rtb] in the [VPC][vpc].
+
+The primary use case is for [VMware Cloud on AWS (VMC)](https://aws.amazon.com/vmware/) [software-defined datacenter (SDDC)][sddc] managed routes, but this could also be used as is for any scenario where syncing AWS VPC routes to custom route tables is desired.
 
 ## Architecture
 
@@ -222,6 +224,8 @@ tree -aFL 6 --dirsfirst --noreport -I ".git|*-latest-build.zip"
 This library is licensed under the Apache 2.0 License.
 
 [rtb]: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html#RouteTables
+[vpc]: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html
+[sddc]: https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws-operations/GUID-A0F15ABA-C2DF-46CD-B883-A9FABD892B75.html
 [profile]: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html
 [cfn_stack]: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html
 [iam_role]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html
