@@ -25,7 +25,8 @@ Synchronizes the specified route from the main/default route table to all custom
 
 ## Getting Started
 
-* From the project root, run `amplify env add`. This will:
+* From the project root, run `npm install` to install the NodeJS dependencies listed in `./package.json`.
+* Then run `amplify env add`, which will:
     * Map your [AWS CLI profile][profile] to a new [AWS Amplify environment](https://aws-amplify.github.io/docs/cli/multienv#setting-up-master-and-dev-environments)
     * NOTE: The default AWS region specified for your AWS CLI profile will be used, such as `us-east-1`.
       Update the value (temporarily or otherwise) if you want the resources deployed elsewhere.
