@@ -445,10 +445,10 @@
       ],
       "Properties": {
         "Name": {
-          "Fn::Sub": "${name}ApiKey"
+          "Fn::Sub": "${name}-${env}-ApiKey"
         },
         "Description": {
-          "Fn::Sub": "API key for '${name}' PATCH '/vpcs/{vpcId}/route-tables/{routeTableId}'. The value of the API key must be supplied in the 'X-API-Key' request header."
+          "Fn::Sub": "API key for ${name}-${env} PATCH '/vpcs/{vpcId}/route-tables/{routeTableId}'. The value of the API key must be supplied in the 'X-API-Key' request header."
         },
         "Enabled": true,
         "StageKeys": [
@@ -471,10 +471,10 @@
       ],
       "Properties": {
         "UsagePlanName": {
-          "Fn::Sub": "${name}UsagePlan"
+          "Fn::Sub": "${name}-${env}-UsagePlan"
         },
         "Description": {
-          "Fn::Sub": "Usage plan for ${name} PATCH '/vpcs/{vpcId}/route-tables/{routeTableId}', which is used to associate the API key with the method."
+          "Fn::Sub": "Usage plan for ${name}-${env} PATCH '/vpcs/{vpcId}/route-tables/{routeTableId}', which is used to associate the API key with the method."
         },
         "ApiStages": [
           {

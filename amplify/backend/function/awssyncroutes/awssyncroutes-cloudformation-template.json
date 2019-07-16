@@ -16,10 +16,10 @@
 			"Type": "AWS::SNS::Topic",
 			"Properties": {
 				"DisplayName": {
-					"Ref": "name"
+					"Fn::Sub": "${name}-${env}"
 				},
 				"TopicName": {
-					"Ref": "name"
+					"Fn::Sub": "${name}-${env}"
 				}
 			}
 		},
