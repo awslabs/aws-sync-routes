@@ -82,7 +82,7 @@ markdown_extensions:
 
 # Page tree
 nav:
-  - Home: 'index.md'
+  - Getting Started: 'index.md'
   - Architecture Decision Records:
     - Record architecture decisions: 'adr/0001-record-architecture-decisions.md'
     - AWS Amplify CLI toolchain: 'adr/0002-aws-amplify-cli-toolchain.md'
