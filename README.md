@@ -220,7 +220,7 @@ tree -aFL 6 --dirsfirst --noreport -I ".git|*-latest-build.zip"
 
 ## License
 
-This library is licensed under the Apache 2.0 License.
+This library is licensed under the [Apache 2.0 License](/about/license).
 
 [rtb]: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html#RouteTables
 [vpc]: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html
