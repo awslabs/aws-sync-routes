@@ -47,6 +47,10 @@ extra:
       link: 'https://aws.amazon.com/'
     - type: 'github-alt'
       link: 'https://github.com/awslabs/aws-sync-routes'
+    - type: 'twitter'
+      link: 'https://twitter.com/AWSOpen'
+    - type: 'reddit'
+      link: 'https://www.reddit.com/r/aws/'
 
 # Extensions
 markdown_extensions:
