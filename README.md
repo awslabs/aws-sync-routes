@@ -2,7 +2,7 @@
 
 Synchronizes the specified route from the [main/default route table][rtb] to all [custom route tables][rtb] in the [VPC][vpc].
 
-The primary use case is for [VMware Cloud on AWS (VMC)](https://aws.amazon.com/vmware/) [software-defined datacenter (SDDC)][sddc] managed routes, but this could also be used as is for any scenario where syncing AWS VPC routes to custom route tables is desired.
+The primary use case is for [VMware Cloud on AWS (VMC)](https://aws.amazon.com/vmware/) [software-defined datacenter (SDDC)][sddc] managed routes, but this could also be used as-is for any scenario where syncing AWS VPC routes to custom route tables is desired.
 
 ## Architecture
 
