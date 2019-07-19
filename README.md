@@ -27,7 +27,7 @@ The primary use case is for [VMware Cloud on AWS (VMC)](https://aws.amazon.com/v
 
 ## Getting Started
 
-* Then run `amplify env add`, which will:
+* Run `amplify env add`, which will:
     * Map your [AWS CLI profile][profile] to a new [AWS Amplify environment](https://aws-amplify.github.io/docs/cli/multienv#setting-up-master-and-dev-environments)
     * NOTE: The default AWS region specified for your AWS CLI profile will be used, such as `us-east-1`.
       Update the value (temporarily or otherwise) if you want the resources deployed elsewhere.
