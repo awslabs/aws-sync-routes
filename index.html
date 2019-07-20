@@ -322,6 +322,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#client-script" title="Client script" class="md-nav__link">
+    Client script
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#project-tree" title="Project tree" class="md-nav__link">
     Project tree
   </a>
@@ -574,6 +581,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#client-script" title="Client script" class="md-nav__link">
+    Client script
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#project-tree" title="Project tree" class="md-nav__link">
     Project tree
   </a>
@@ -807,6 +821,14 @@ Current Environment: dev
 <div class="codehilite"><pre><span></span>curl --data <span class="s1">&#39;{&quot;destination-cidr-block&quot;:&quot;&lt;destination cidr block&gt;&quot;, &quot;dry-run&quot;: true}&#39;</span> --header <span class="s2">&quot;X-API-Key: &lt;api key&gt;&quot;</span> --header <span class="s2">&quot;Content-Type: application/json&quot;</span> --request PATCH https://&lt;api gateway id&gt;.execute-api.&lt;region&gt;.amazonaws.com/&lt;stage name&gt;/vpcs/&lt;vpc id&gt;/route-tables/&lt;route table id&gt;
 </pre></div>
 
+<h2 id="client-script">Client script<a class="headerlink" href="#client-script" title="Permanent link">&para;</a></h2>
+<p>A bash script has been added, which can be used to call the API endpoint asynchronously for a comma-delimited list of destination CIDR blocks in an loop.</p>
+<div class="codehilite"><pre><span></span>./scripts/aws-sync-routes-client.sh -i <span class="nv">$api_gateway_id</span> -k <span class="nv">$api_key</span> -r <span class="s1">&#39;us-east-1&#39;</span> -c <span class="s1">&#39;172.30.0.0/16, 172.31.0.0/16&#39;</span> -s <span class="m">5</span> -t rtb-01234567 -v vpc-01234567
+</pre></div>
+
+<div class="codehilite"><pre><span></span>./scripts/aws-sync-routes-client.sh --help
+</pre></div>
+
 <h2 id="project-tree">Project tree<a class="headerlink" href="#project-tree" title="Permanent link">&para;</a></h2>
 <div class="codehilite"><pre><span></span>.
 ├── .github/
@@ -859,6 +881,8 @@ Current Environment: dev
 │   ├── partials/
 │   │   └── palette.html
 │   └── main.html
+├── scripts/
+│   └── aws-sync-routes-client.sh*
 ├── src/
 │   └── aws-exports.js
 ├── .adr-dir
@@ -875,7 +899,7 @@ Current Environment: dev
 </pre></div>
 
 <p><em>The project tree was generated with the following command:</em></p>
-<div class="codehilite"><pre><span></span>tree -aFL <span class="m">6</span> --dirsfirst --noreport -I <span class="s2">&quot;.git|*-latest-build.zip&quot;</span>
+<div class="codehilite"><pre><span></span>tree -aFL <span class="m">6</span> --dirsfirst --noreport -I <span class="s2">&quot;.git|site|*-latest-build.zip&quot;</span>
 </pre></div>
 
 <h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
