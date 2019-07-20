@@ -143,6 +143,18 @@ The request body schema has one required property: `destination-cidr-block`, and
 curl --data '{"destination-cidr-block":"<destination cidr block>", "dry-run": true}' --header "X-API-Key: <api key>" --header "Content-Type: application/json" --request PATCH https://<api gateway id>.execute-api.<region>.amazonaws.com/<stage name>/vpcs/<vpc id>/route-tables/<route table id>
 ```
 
+## Client script
+
+A bash script has been added, which can be used to call the API endpoint asynchronously for a comma-delimited list of destination CIDR blocks in an loop.
+
+```sh
+./scripts/aws-sync-routes-client.sh -i $api_gateway_id -k $api_key -r 'us-east-1' -c '172.30.0.0/16, 172.31.0.0/16' -s 5 -t rtb-01234567 -v vpc-01234567
+```
+
+```sh
+./scripts/aws-sync-routes-client.sh --help
+```
+
 ## Project tree
 
 ```text
@@ -197,6 +209,8 @@ curl --data '{"destination-cidr-block":"<destination cidr block>", "dry-run": tr
 │   ├── partials/
 │   │   └── palette.html
 │   └── main.html
+├── scripts/
+│   └── aws-sync-routes-client.sh*
 ├── src/
 │   └── aws-exports.js
 ├── .adr-dir
@@ -215,7 +229,7 @@ curl --data '{"destination-cidr-block":"<destination cidr block>", "dry-run": tr
 *The project tree was generated with the following command:*
 
 ```sh
-tree -aFL 6 --dirsfirst --noreport -I ".git|*-latest-build.zip"
+tree -aFL 6 --dirsfirst --noreport -I ".git|site|*-latest-build.zip"
 ```
 
 ## License
