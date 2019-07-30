@@ -61,9 +61,9 @@
       "Type": "AWS::ApiGateway::RestApi",
       "Properties": {
         "Name": {
-          "Ref": "name"
+          "Fn::Sub": "${name}-${env}"
         },
-        "Description": "REST API for synchronizing route table updates from the main route table in the specified VPC to all custom route tables.",
+        "Description": "The ${env} REST API instance for synchronizing route table updates from the main route table in the specified VPC to all custom route tables.",
         "ApiKeySourceType": "HEADER",
         "EndpointConfiguration": {
           "Types": [
