@@ -155,6 +155,29 @@ A bash script has been added, which can be used to call the API endpoint asynchr
 ./scripts/aws-sync-routes-client.sh --help
 ```
 
+## Troubleshooting
+
+### Too Many Requests
+
+If you start receiving `Too Many Requests` error messages, this means that the configured rate & burst limits for your API Gateway instance are set too low for the frequency in which you are polling. Adjust the `burstLimit` & `rateLimit` values in [`parameters.json`](https://github.com/awslabs/aws-sync-routes/blob/master/amplify/backend/api/awssyncroutes/parameters.json), then run `amplify push` to deploy the changes, and try again.
+
+Of note, the rate & burst limits are only configured in the API token usage plan as described in the [API Gateway CloudFormation template](https://github.com/awslabs/aws-sync-routes/blob/master/amplify/backend/api/awssyncroutes/awssyncroutes-cloudformation-template.json), not the API Gateway deployment stage. Throttling could be configured in both locations, but configuring this in both locations is unnecessary and the current configuration makes it easy to use additional API tokens if so desired.
+
+### Request Limit Exceeded
+
+If you are syncing a batch of routes and start receiving `Request Limit Exceeded` error messages, this means that the requests are being throttled due to the number of requests in this region in this account within a set period of time.
+
+First try decreasing the frequency of API calls. If that is unteneble, please open an AWS Support ticket explaining the business case and request an increase to the limits for the following:
+
+* [EC2 describe route tables](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/EC2.html#describeRouteTables-property)
+    * 1 call per request (sustained)
+* [EC2 create route](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/EC2.html#createRoute-property)
+    * 1 call per custom route table per request where the route exists in the main route table, but not in the custom route table (burst)
+    * In dry-run mode, this action will be called for every request since changes will not be executed, resulting in a higher likelihood of throttling
+* [EC2 replace route](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/EC2.html#replaceRoute-property)
+    * 1 call per custom route table per request where the route exists in both the main & custom route table, but have different next hop values (burst)
+    * In dry-run mode, this action will be called for every request since changes will not be executed, resulting in a higher likelihood of throttling
+
 ## Project tree
 
 ```text
@@ -197,7 +220,8 @@ A bash script has been added, which can be used to call the API endpoint asynchr
 │   │   ├── 0002-aws-amplify-cli-toolchain.md
 │   │   ├── 0003-http-patch-method.md
 │   │   ├── 0004-api-key.md
-│   │   └── 0005-uri.md
+│   │   ├── 0005-uri.md
+│   │   └── 0006-specificity.md
 │   ├── Architecture.png -> ../Architecture.png
 │   ├── InfrastructureAsCode.png -> ../InfrastructureAsCode.png
 │   └── index.md -> ../README.md
