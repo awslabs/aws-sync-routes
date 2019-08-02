@@ -329,6 +329,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#troubleshooting" title="Troubleshooting" class="md-nav__link">
+    Troubleshooting
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#too-many-requests" title="Too Many Requests" class="md-nav__link">
+    Too Many Requests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-limit-exceeded" title="Request Limit Exceeded" class="md-nav__link">
+    Request Limit Exceeded
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#project-tree" title="Project tree" class="md-nav__link">
     Project tree
   </a>
@@ -428,6 +455,18 @@
   <li class="md-nav__item">
     <a href="adr/0005-uri/" title="URI" class="md-nav__link">
       URI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="adr/0006-specificity/" title="Specificity" class="md-nav__link">
+      Specificity
     </a>
   </li>
 
@@ -584,6 +623,33 @@
   <a href="#client-script" title="Client script" class="md-nav__link">
     Client script
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" title="Troubleshooting" class="md-nav__link">
+    Troubleshooting
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#too-many-requests" title="Too Many Requests" class="md-nav__link">
+    Too Many Requests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-limit-exceeded" title="Request Limit Exceeded" class="md-nav__link">
+    Request Limit Exceeded
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -829,6 +895,29 @@ Current Environment: dev
 <div class="codehilite"><pre><span></span>./scripts/aws-sync-routes-client.sh --help
 </pre></div>
 
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="too-many-requests">Too Many Requests<a class="headerlink" href="#too-many-requests" title="Permanent link">&para;</a></h3>
+<p>If you start receiving <code>Too Many Requests</code> error messages, this means that the configured rate &amp; burst limits for your API Gateway instance are set too low for the frequency in which you are polling. Adjust the <code>burstLimit</code> &amp; <code>rateLimit</code> values in <a href="https://github.com/awslabs/aws-sync-routes/blob/master/amplify/backend/api/awssyncroutes/parameters.json"><code>parameters.json</code></a>, then run <code>amplify push</code> to deploy the changes, and try again.</p>
+<p>Of note, the rate &amp; burst limits are only configured in the API token usage plan as described in the <a href="https://github.com/awslabs/aws-sync-routes/blob/master/amplify/backend/api/awssyncroutes/awssyncroutes-cloudformation-template.json">API Gateway CloudFormation template</a>, not the API Gateway deployment stage. Throttling could be configured in both locations, but configuring this in both locations is unnecessary and the current configuration makes it easy to use additional API tokens if so desired.</p>
+<h3 id="request-limit-exceeded">Request Limit Exceeded<a class="headerlink" href="#request-limit-exceeded" title="Permanent link">&para;</a></h3>
+<p>If you are syncing a batch of routes and start receiving <code>Request Limit Exceeded</code> error messages, this means that the requests are being throttled due to the number of requests in this region in this account within a set period of time.</p>
+<p>First try decreasing the frequency of API calls. If that is unteneble, please open an AWS Support ticket explaining the business case and request an increase to the limits for the following:</p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/EC2.html#describeRouteTables-property">EC2 describe route tables</a><ul>
+<li>1 call per request (sustained)</li>
+</ul>
+</li>
+<li><a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/EC2.html#createRoute-property">EC2 create route</a><ul>
+<li>1 call per custom route table per request where the route exists in the main route table, but not in the custom route table (burst)</li>
+<li>In dry-run mode, this action will be called for every request since changes will not be executed, resulting in a higher likelihood of throttling</li>
+</ul>
+</li>
+<li><a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/EC2.html#replaceRoute-property">EC2 replace route</a><ul>
+<li>1 call per custom route table per request where the route exists in both the main &amp; custom route table, but have different next hop values (burst)</li>
+<li>In dry-run mode, this action will be called for every request since changes will not be executed, resulting in a higher likelihood of throttling</li>
+</ul>
+</li>
+</ul>
 <h2 id="project-tree">Project tree<a class="headerlink" href="#project-tree" title="Permanent link">&para;</a></h2>
 <div class="codehilite"><pre><span></span>.
 ├── .github/
@@ -869,7 +958,8 @@ Current Environment: dev
 │   │   ├── 0002-aws-amplify-cli-toolchain.md
 │   │   ├── 0003-http-patch-method.md
 │   │   ├── 0004-api-key.md
-│   │   └── 0005-uri.md
+│   │   ├── 0005-uri.md
+│   │   └── 0006-specificity.md
 │   ├── Architecture.png -&gt; ../Architecture.png
 │   ├── InfrastructureAsCode.png -&gt; ../InfrastructureAsCode.png
 │   └── index.md -&gt; ../README.md

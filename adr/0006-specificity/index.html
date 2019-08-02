@@ -13,7 +13,7 @@
         <meta name="description" content="Synchronizes the specified route from the main/default route table to all custom route tables in the VPC.">
       
       
-        <link rel="canonical" href="https://awslabs.github.io/aws-sync-routes/adr/0002-aws-amplify-cli-toolchain/">
+        <link rel="canonical" href="https://awslabs.github.io/aws-sync-routes/adr/0006-specificity/">
       
       
         <meta name="author" content="Amazon Web Services, Inc.">
@@ -42,7 +42,7 @@
     
     
       
-        <title>AWS Amplify CLI toolchain - AWS Sync Routes</title>
+        <title>Specificity - AWS Sync Routes</title>
       
     
     
@@ -83,7 +83,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#2-aws-amplify-cli-toolchain" tabindex="1" class="md-skip">
+      <a href="#6-specificity" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -109,7 +109,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                AWS Amplify CLI toolchain
+                Specificity
               
             </span>
           
@@ -263,6 +263,54 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../0002-aws-amplify-cli-toolchain/" title="AWS Amplify CLI toolchain" class="md-nav__link">
+      AWS Amplify CLI toolchain
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../0003-http-patch-method/" title="HTTP PATCH method" class="md-nav__link">
+      HTTP PATCH method
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../0004-api-key/" title="API Key" class="md-nav__link">
+      API Key
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../0005-uri/" title="URI" class="md-nav__link">
+      URI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -274,11 +322,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        AWS Amplify CLI toolchain
+        Specificity
       </label>
     
-    <a href="./" title="AWS Amplify CLI toolchain" class="md-nav__link md-nav__link--active">
-      AWS Amplify CLI toolchain
+    <a href="./" title="Specificity" class="md-nav__link md-nav__link--active">
+      Specificity
     </a>
     
       
@@ -327,54 +375,6 @@
   
 </nav>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../0003-http-patch-method/" title="HTTP PATCH method" class="md-nav__link">
-      HTTP PATCH method
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../0004-api-key/" title="API Key" class="md-nav__link">
-      API Key
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../0005-uri/" title="URI" class="md-nav__link">
-      URI
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../0006-specificity/" title="Specificity" class="md-nav__link">
-      Specificity
-    </a>
   </li>
 
         
@@ -495,22 +495,20 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/awslabs/aws-sync-routes/blob/master/docs/adr/0002-aws-amplify-cli-toolchain.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/awslabs/aws-sync-routes/blob/master/docs/adr/0006-specificity.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="2-aws-amplify-cli-toolchain">2. AWS Amplify CLI toolchain<a class="headerlink" href="#2-aws-amplify-cli-toolchain" title="Permanent link">&para;</a></h1>
-<p>Date: 2019-05-21</p>
+                <h1 id="6-specificity">6. Specificity<a class="headerlink" href="#6-specificity" title="Permanent link">&para;</a></h1>
+<p>Date: 2019-07-23</p>
 <h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
 <p>Accepted</p>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
-<p>The requested functionality was an API endpoint that would synchronize a specified route (either add or replace) from the main route table to the custom route tables, triggered from a log event.
-All resources should be managed programmatically for an optimal possible user experience.</p>
+<p>Feature requests for both summary routes and dynamic route discovery have been proposed so that new routes are automatically discovered and synchronized in order to reduce the risk of new routes being missed.</p>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p>The AWS Amplify CLI toolchain will be used for programmatically creating, updating, and destroying project resources.
-The endpoint will be defined in an AWS API Gateway, and the synchronization functionality will be defined in a Lambda function.</p>
+<p>Programmatically making changes to a production routing table is serious business that has the potential to cause network outages.
+Only specified routes will be synchronized to prevent unintentional changes.</p>
 <h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
-<p>End users will need the AWS CLI, NodeJS 8.11+, and the @aws-amplify/cli package installed.
-Detailed instructions will be required.</p>
+<p>End users must update their request configuration when they add new routes that they want to sync or remove routes that should no longer be synced.</p>
                 
                   
                 
@@ -531,7 +529,7 @@ Detailed instructions will be required.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../0001-record-architecture-decisions/" title="Record architecture decisions" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../0005-uri/" title="URI" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -540,19 +538,19 @@ Detailed instructions will be required.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Record architecture decisions
+                URI
               </span>
             </div>
           </a>
         
         
-          <a href="../0003-http-patch-method/" title="HTTP PATCH method" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../about/contributing/" title="Contributing Guidelines" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                HTTP PATCH method
+                Contributing Guidelines
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

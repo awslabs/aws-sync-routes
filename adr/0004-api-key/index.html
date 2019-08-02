@@ -366,6 +366,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../0006-specificity/" title="Specificity" class="md-nav__link">
+      Specificity
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -491,13 +503,9 @@
 <h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
 <p>Accepted</p>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
-<p>The requested functionality was to synchronize a specified route (either add or
-replace) from the main route table to the custom route tables, triggered from
-a log event. Access to the API endpoint should be restricted since it can modify,
-custom route tables, but needs to be very simplistic and either accepts or rejects
-the call on the first request given the nature of the trigger. Optimally, the
-Lambda proxy function should not be called if the user does not present the proper
-information to minimize costs.</p>
+<p>The requested functionality was to synchronize a specified route (either add or replace) from the main route table to the custom route tables, triggered from a log event.
+Access to the API endpoint should be restricted since it can modify, custom route tables, but needs to be very simplistic and either accepts or rejects the call on the first request given the nature of the trigger.
+Optimally, the Lambda proxy function should not be called if the user does not present the proper information to minimize costs.</p>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p>API Gateway API keys will be used to limit access given the constraints.</p>
 <h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
