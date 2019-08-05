@@ -116,6 +116,8 @@ Please test thoroughly.
         * `aws apigateway get-api-keys`: Copy the `id` value for the next command.
         * `aws apigateway get-api-key --include-value --api-key <id>`: Copy the `value` value.
 
+* Then [subscribe to the SNS topic](https://docs.aws.amazon.com/sns/latest/dg/sns-tutorial-create-subscribe-endpoint-to-topic.html#create-subscribe-endpoint-to-topic-aws-console) to opt-in for change notifications.
+
 * Now, you are ready to test the API endpoint.
     * One way to do this:
 
