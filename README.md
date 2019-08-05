@@ -161,6 +161,7 @@ curl --data '{"destination-cidr-block":"<destination cidr block>", "dry-run": tr
 ## Client script
 
 A bash script has been added, which can be used to call the API endpoint asynchronously for a comma-delimited list of destination CIDR blocks in an loop.
+One way to implement this would be to call the script in a [screen](https://linux.die.net/man/1/screen) session so that the script can run without maintaining a SSH session and administrators can disconnect/reconnect as needed.
 
 ```sh
 ./scripts/aws-sync-routes-client.sh -i $api_gateway_id -k $api_key -r 'us-east-1' -c '172.30.0.0/16, 172.31.0.0/16' -s 5 -t rtb-01234567 -v vpc-01234567
