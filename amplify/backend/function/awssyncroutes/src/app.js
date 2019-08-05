@@ -6,6 +6,7 @@ or in the "license" file accompanying this file. This file is distributed on an 
 See the License for the specific language governing permissions and limitations under the License.
 */
 
+const start = new Date();
 const AWS = require('aws-sdk');
 const each = require('async-each');
 const express = require('express');
@@ -284,7 +285,10 @@ app.patch('/vpcs/:vpcId(vpc-[0-9a-f]{8}|vpc-[0-9a-f]{17})/route-tables/:routeTab
         };
 
         snsParams.Subject = snsParams.Subject.replace(/{{action}}/, 'Add');
-        snsParams.Message += `* Target ENI: '${mainRouteTableRoute.NetworkInterfaceId}'\r\n`;
+        snsParams.Message +=
+          `* Target ENI: '${mainRouteTableRoute.NetworkInterfaceId}'\r\n` +
+          `* Start: ${start.toISOString()}\r\n` +
+          `* End: ${new Date().toISOString()}\r\n`;
 
         await ec2.createRoute(params).promise()
           .then(async () => {
@@ -335,10 +339,11 @@ app.patch('/vpcs/:vpcId(vpc-[0-9a-f]{8}|vpc-[0-9a-f]{17})/route-tables/:routeTab
         };
 
         snsParams.Subject = snsParams.Subject.replace(/{{action}}/, 'Sync');
-        snsParams.Message += (
+        snsParams.Message +=
           `* Old target ENI: '${customRouteTableRoute.NetworkInterfaceId}'\r\n` +
-          `* New target ENI: '${mainRouteTableRoute.NetworkInterfaceId}'\r\n`
-        );
+          `* New target ENI: '${mainRouteTableRoute.NetworkInterfaceId}'\r\n` +
+          `* Start: ${start.toISOString()}\r\n` +
+          `* End: ${new Date().toISOString()}\r\n`;
 
         await ec2.replaceRoute(params).promise()
           .then(async () => {
