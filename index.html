@@ -689,6 +689,14 @@
                 <h1 id="aws-sync-routes">AWS Sync Routes<a class="headerlink" href="#aws-sync-routes" title="Permanent link">&para;</a></h1>
 <p>Synchronizes the specified route from the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html#RouteTables">main/default route table</a> to all <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html#RouteTables">custom route tables</a> in the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html">VPC</a>.</p>
 <p>The primary use case is for <a href="https://aws.amazon.com/vmware/">VMware Cloud on AWS (VMC)</a> <a href="https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws-operations/GUID-A0F15ABA-C2DF-46CD-B883-A9FABD892B75.html">software-defined datacenter (SDDC)</a> managed routes, but this could also be used as-is for any scenario where syncing AWS VPC routes to custom route tables is desired.</p>
+<p>This solution should only cost a few dollars per month to operate- depending on the number of routes managed and the number of API calls.
+Please see the pricing guides for further details: <a href="https://aws.amazon.com/lambda/pricing/">AWS Lambda</a>, <a href="https://aws.amazon.com/api-gateway/pricing/">AWS API Gateway</a>, <a href="https://aws.amazon.com/sns/pricing/">Amazon SNS</a>, <a href="https://aws.amazon.com/s3/pricing/">Amazon S3</a>, <a href="https://aws.amazon.com/cloudwatch/pricing/">Amazon CloudWatch Logs</a>, &amp; <a href="https://aws.amazon.com/cloudformation/pricing/">CloudFormation</a>.</p>
+<p>This is also an infrastructure as code solution, meaning that it should only require a few commands to deploy once the prerequisites are installed &amp; configured, and was designed so that it should not require much attention thereafter.</p>
+<p>Once deployed, the enpdoint generally takes 1-3 seconds to execute when called, and is <a href="https://en.wikipedia.org/wiki/Idempotence">idempotent</a>, so changes will only be implemented once when the specified route either does not exist in one or more custom route tables or the next hop value changes.
+Routes will not be programmatically removed by this solution.</p>
+<p>One customer success story to date is that this solution was used in <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html">us-east-1</a> to synchronize 26 production routes across 4 custom route tables (104 concurrent route synchronizations) within 4 seconds.
+This met the customer's requirement of completing all route sychronizations prior to timeout of a mission critical application at 15 seconds, and allowed them to complete a critical maintenance window.</p>
+<p>Please test thoroughly.</p>
 <h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
 <h3 id="architecture-diagram">Architecture diagram<a class="headerlink" href="#architecture-diagram" title="Permanent link">&para;</a></h3>
 <p><img alt="architecture_diagram" src="Architecture.png" title="Architecture diagram" /></p>
@@ -808,6 +816,9 @@ Current Environment: dev
 </ul>
 </li>
 <li>
+<p>Then <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-tutorial-create-subscribe-endpoint-to-topic.html#create-subscribe-endpoint-to-topic-aws-console">subscribe to the SNS topic</a> to opt-in for change notifications.</p>
+</li>
+<li>
 <p>Now, you are ready to test the API endpoint.</p>
 <ul>
 <li>One way to do this:</li>
@@ -888,7 +899,8 @@ Current Environment: dev
 </pre></div>
 
 <h2 id="client-script">Client script<a class="headerlink" href="#client-script" title="Permanent link">&para;</a></h2>
-<p>A bash script has been added, which can be used to call the API endpoint asynchronously for a comma-delimited list of destination CIDR blocks in an loop.</p>
+<p>A bash script has been added, which can be used to call the API endpoint asynchronously for a comma-delimited list of destination CIDR blocks in an loop.
+One way to implement this would be to call the script in a <a href="https://linux.die.net/man/1/screen">screen</a> session so that the script can run without maintaining a SSH session and administrators can disconnect/reconnect as needed.</p>
 <div class="codehilite"><pre><span></span>./scripts/aws-sync-routes-client.sh -i <span class="nv">$api_gateway_id</span> -k <span class="nv">$api_key</span> -r <span class="s1">&#39;us-east-1&#39;</span> -c <span class="s1">&#39;172.30.0.0/16, 172.31.0.0/16&#39;</span> -s <span class="m">5</span> -t rtb-01234567 -v vpc-01234567
 </pre></div>
 
