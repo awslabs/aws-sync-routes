@@ -154,8 +154,16 @@ The request body schema has one required property: `destination-cidr-block`, and
 
 ## Example
 
+### cURL
+
 ```sh
 curl --data '{"destination-cidr-block":"<destination cidr block>", "dry-run": true}' --header "X-API-Key: <api key>" --header "Content-Type: application/json" --request PATCH https://<api gateway id>.execute-api.<region>.amazonaws.com/<stage name>/vpcs/<vpc id>/route-tables/<route table id>
+```
+
+### PowerShell Invoke-RestMethod cmdlet
+
+```powershell
+Invoke-RestMethod -Method 'Patch' -Uri 'https://<api gateway id>.execute-api.<region>.amazonaws.com/<stage name>/vpcs/<vpc id>/route-tables/<route table id>' -Headers @{ 'Content-Type'='application/json'; 'X-API-Key'='<api key>'} -Body '{"destination-cidr-block":"172.30.0.0/16", "dry-run": false}'
 ```
 
 ## Client script
