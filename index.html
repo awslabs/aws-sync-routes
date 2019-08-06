@@ -319,6 +319,26 @@
     Example
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#curl" title="cURL" class="md-nav__link">
+    cURL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#powershell-invoke-restmethod-cmdlet" title="PowerShell Invoke-RestMethod cmdlet" class="md-nav__link">
+    PowerShell Invoke-RestMethod cmdlet
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -617,6 +637,26 @@
     Example
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#curl" title="cURL" class="md-nav__link">
+    cURL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#powershell-invoke-restmethod-cmdlet" title="PowerShell Invoke-RestMethod cmdlet" class="md-nav__link">
+    PowerShell Invoke-RestMethod cmdlet
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -895,7 +935,12 @@ Current Environment: dev
 </tbody>
 </table>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<h3 id="curl">cURL<a class="headerlink" href="#curl" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span>curl --data <span class="s1">&#39;{&quot;destination-cidr-block&quot;:&quot;&lt;destination cidr block&gt;&quot;, &quot;dry-run&quot;: true}&#39;</span> --header <span class="s2">&quot;X-API-Key: &lt;api key&gt;&quot;</span> --header <span class="s2">&quot;Content-Type: application/json&quot;</span> --request PATCH https://&lt;api gateway id&gt;.execute-api.&lt;region&gt;.amazonaws.com/&lt;stage name&gt;/vpcs/&lt;vpc id&gt;/route-tables/&lt;route table id&gt;
+</pre></div>
+
+<h3 id="powershell-invoke-restmethod-cmdlet">PowerShell Invoke-RestMethod cmdlet<a class="headerlink" href="#powershell-invoke-restmethod-cmdlet" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="nb">Invoke-RestMethod</span> <span class="n">-Method</span> <span class="s1">&#39;Patch&#39;</span> <span class="n">-Uri</span> <span class="s1">&#39;https://&lt;api gateway id&gt;.execute-api.&lt;region&gt;.amazonaws.com/&lt;stage name&gt;/vpcs/&lt;vpc id&gt;/route-tables/&lt;route table id&gt;&#39;</span> <span class="n">-Headers</span> <span class="p">@{</span> <span class="s1">&#39;Content-Type&#39;</span><span class="p">=</span><span class="s1">&#39;application/json&#39;</span><span class="p">;</span> <span class="s1">&#39;X-API-Key&#39;</span><span class="p">=</span><span class="s1">&#39;&lt;api key&gt;&#39;</span><span class="p">}</span> <span class="n">-Body</span> <span class="s1">&#39;{&quot;destination-cidr-block&quot;:&quot;172.30.0.0/16&quot;, &quot;dry-run&quot;: false}&#39;</span>
 </pre></div>
 
 <h2 id="client-script">Client script<a class="headerlink" href="#client-script" title="Permanent link">&para;</a></h2>
