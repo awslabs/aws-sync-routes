@@ -33,7 +33,7 @@ Please test thoroughly.
 * [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
     * Configured [AWS CLI profile][profile]
 * [AWS Amplify CLI toolchain](https://github.com/aws-amplify/amplify-cli)
-    * NOTE: Interoperability between the AWS Amplify CLI and [AWS CLI Multi-Factor Authentication (MFA)](https://docs.aws.amazon.com/cli/latest/reference/sts/get-session-token.html) and [assume role with MFA](https://docs.aws.amazon.com/cli/latest/reference/sts/assume-role.html) have been validated in testing per request. Please also see this [AWS blog post](https://aws.amazon.com/premiumsupport/knowledge-center/authenticate-mfa-cli/) for a few great examples.
+    * NOTE: Interoperability between the AWS Amplify CLI and [AWS CLI Multi-Factor Authentication (MFA)](https://docs.aws.amazon.com/cli/latest/reference/sts/get-session-token.html), as well as [assume role with MFA](https://docs.aws.amazon.com/cli/latest/reference/sts/assume-role.html), have been validated in testing per request. Please also see this [AWS blog post](https://aws.amazon.com/premiumsupport/knowledge-center/authenticate-mfa-cli/) for a few great examples.
 
 ### For Windows users
 
