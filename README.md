@@ -32,6 +32,7 @@ Please test thoroughly.
 * [NodeJS 8.11+ or 10.15+](https://nodejs.org/)
 * [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
     * Configured [AWS CLI profile][profile]
+    * NOTE: Support [Multi-Factor Authentication (MFA)](https://docs.aws.amazon.com/cli/latest/reference/sts/get-session-token.html) and [assume role with MFA](https://docs.aws.amazon.com/cli/latest/reference/sts/assume-role.html) have been validated in testing per request.
 * [AWS Amplify CLI toolchain](https://github.com/aws-amplify/amplify-cli)
 
 ### For Windows users
