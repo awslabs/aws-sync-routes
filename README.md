@@ -9,7 +9,7 @@ Please see the pricing guides for further details: [AWS Lambda](https://aws.amaz
 
 This is also an infrastructure as code solution, meaning that it should only require a few commands to deploy once the prerequisites are installed & configured, and was designed so that it should not require much attention thereafter.
 
-Once deployed, the enpdoint generally takes 1-3 seconds to execute when called, and is [idempotent](https://en.wikipedia.org/wiki/Idempotence), so changes will only be implemented once when the specified route either does not exist in one or more custom route tables or the next hop value changes.
+Once deployed, the endpoint generally takes 1-3 seconds to execute when called, and is [idempotent](https://en.wikipedia.org/wiki/Idempotence), so changes will only be implemented once when the specified route either does not exist in one or more custom route tables or the next hop value changes.
 Routes will not be programmatically removed by this solution.
 
 One customer success story to date is that this solution was used in [us-east-1](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) to synchronize 26 production routes across 4 custom route tables (104 concurrent route synchronizations) within 4 seconds.
