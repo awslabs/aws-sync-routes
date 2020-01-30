@@ -29,7 +29,7 @@ Please test thoroughly.
 
 ## Prerequisites
 
-* [NodeJS 8.11+ or 10.15+](https://nodejs.org/)
+* [NodeJS](https://nodejs.org/)
 * [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
     * Configured [AWS CLI profile][profile]
 * [AWS Amplify CLI toolchain](https://github.com/aws-amplify/amplify-cli)
