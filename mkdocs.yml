@@ -25,8 +25,8 @@ theme:
     - '404.html'
 
   # Don't include MkDocs' JavaScript
-  include_search_page: false
-  search_index_only: false
+  include_search_page: 'false'
+  search_index_only: 'true'
 
   # Theme
   language: 'en'
