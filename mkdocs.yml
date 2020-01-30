@@ -13,7 +13,7 @@ remote_branch: 'gh-pages'
 edit_uri: 'blob/master/docs/'
 
 # Copyright
-copyright: 'Copyright 2019, Amazon Web Services, Inc. or its affiliates. All rights reserved.'
+copyright: 'Copyright 2019-2020, Amazon Web Services, Inc. or its affiliates. All rights reserved.'
 
 # Configuration
 theme:
