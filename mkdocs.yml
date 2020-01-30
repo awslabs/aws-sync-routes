@@ -42,6 +42,7 @@ theme:
 
 # Customization
 extra:
+  manifest: 'manifest.json'
   social:
     - type: 'globe'
       link: 'https://aws.amazon.com/'
