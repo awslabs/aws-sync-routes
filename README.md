@@ -13,7 +13,7 @@ Once deployed, the endpoint generally takes 1-3 seconds to execute when called, 
 Routes will not be programmatically removed by this solution.
 
 One customer success story to date is that this solution was used in [us-east-1](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) to synchronize 26 production routes across 4 custom route tables (104 concurrent route synchronizations) within 4 seconds.
-This met the customer's requirement of completing all route sychronizations prior to timeout of a mission critical application at 15 seconds, and allowed them to complete a critical maintenance window.
+This met the customer's requirement of completing all route synchronizations prior to timeout of a mission critical application at 15 seconds, and allowed them to complete a critical maintenance window.
 
 Please test thoroughly.
 
