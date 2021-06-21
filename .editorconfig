@@ -17,8 +17,11 @@ indent_style = none
 indent_size = none
 tab_width = 2
 
-[/amplify/backend/{*.json,awscloudformation/**,function/**-cloudformation-template.json}]
+[/amplify/backend/{*.json,awscloudformation/**}]
 insert_final_newline = false
 indent_style = none
 indent_size = none
 tab_width = 2
+
+[/amplify/backend/function/**-cloudformation-template.json]
+insert_final_newline = false
