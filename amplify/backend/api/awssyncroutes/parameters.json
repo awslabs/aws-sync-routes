@@ -1,11 +1,5 @@
 {
   "name": "awssyncroutes",
   "burstLimit": 10,
-  "rateLimit": 1,
-  "authRoleName": {
-    "Ref": "AuthRoleName"
-  },
-  "unauthRoleName": {
-    "Ref": "UnauthRoleName"
-  }
+  "rateLimit": 1
 }

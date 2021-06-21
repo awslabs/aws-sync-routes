@@ -1,172 +1,182 @@
 {
-	"AWSTemplateFormatVersion": "2010-09-09",
-	"Description": "Lambda resource stack creation using Amplify CLI",
-	"Parameters": {
-		"env": {
-			"Type": "String",
-			"Default": "Prod"
-		},
-		"name": {
-			"Type": "String",
-			"Default": "awssyncroutes"
-		}
-	},
-	"Resources": {
-		"SNSTopic": {
-			"Type": "AWS::SNS::Topic",
-			"Properties": {
-				"DisplayName": {
-					"Fn::Sub": "${name}-${env}"
-				},
-				"TopicName": {
-					"Fn::Sub": "${name}-${env}"
-				}
-			}
-		},
-		"LambdaFunction": {
-			"DependsOn": [
-				"SNSTopic"
-			],
-			"Type": "AWS::Lambda::Function",
-			"Metadata": {
-				"aws:asset:path": "./src",
-				"aws:asset:property": "Code"
-			},
-			"Properties": {
-				"Handler": "index.handler",
-				"FunctionName": {
-					"Fn::Sub": "${name}-${env}"
-				},
-				"Environment": {
-					"Variables": {
-						"ENV": {
-							"Ref": "env"
-						},
-						"SNS_TOPIC_ARN": {
-							"Ref": "SNSTopic"
-						}
-					}
-				},
-				"Role": {
-					"Fn::GetAtt": [
-						"LambdaExecutionRole",
-						"Arn"
-					]
-				},
-				"Runtime": "nodejs12.x",
-				"Timeout": 25,
-				"Code": {
-					"S3Bucket": "",
-					"S3Key": "amplify-builds/awssyncroutes-2f63485a3444676d4471-build.zip"
-				}
-			}
-		},
-		"LambdaExecutionRole": {
-			"Type": "AWS::IAM::Role",
-			"Properties": {
-				"RoleName": {
-					"Fn::Sub": "${name}-${env}-LambdaRole"
-				},
-				"AssumeRolePolicyDocument": {
-					"Version": "2012-10-17",
-					"Statement": [
-						{
-							"Effect": "Allow",
-							"Principal": {
-								"Service": [
-									"lambda.amazonaws.com"
-								]
-							},
-							"Action": [
-								"sts:AssumeRole"
-							]
-						}
-					]
-				}
-			}
-		},
-		"LambdaExecutionPolicy": {
-			"DependsOn": [
-				"LambdaExecutionRole"
-			],
-			"Type": "AWS::IAM::Policy",
-			"Properties": {
-				"PolicyName": "lambda-execution-policy",
-				"Roles": [
-					{
-						"Ref": "LambdaExecutionRole"
-					}
-				],
-				"PolicyDocument": {
-					"Version": "2012-10-17",
-					"Statement": [
-						{
-							"Effect": "Allow",
-							"Action": [
-								"logs:CreateLogGroup",
-								"logs:CreateLogStream",
-								"logs:PutLogEvents"
-							],
-							"Resource": {
-								"Fn::Sub": [
-									"arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${lambda}:log-stream:*",
-									{
-										"lambda": {
-											"Ref": "LambdaFunction"
-										}
-									}
-								]
-							}
-						},
-						{
-							"Effect": "Allow",
-							"Action": [
-								"ec2:DescribeRouteTables"
-							],
-							"Resource": "*"
-						},
-						{
-							"Effect": "Allow",
-							"Action": [
-								"ec2:CreateRoute",
-								"ec2:ReplaceRoute"
-							],
-							"Resource": {
-								"Fn::Sub": "arn:${AWS::Partition}:ec2:${AWS::Region}:${AWS::AccountId}:route-table/*"
-							}
-						},
-						{
-							"Effect": "Allow",
-							"Action": [
-								"sns:Publish"
-							],
-							"Resource": {
-								"Ref": "SNSTopic"
-							}
-						}
-					]
-				}
-			}
-		}
-	},
-	"Outputs": {
-		"Name": {
-			"Value": {
-				"Ref": "LambdaFunction"
-			}
-		},
-		"Arn": {
-			"Value": {
-				"Fn::GetAtt": [
-					"LambdaFunction",
-					"Arn"
-				]
-			}
-		},
-		"Region": {
-			"Value": {
-				"Ref": "AWS::Region"
-			}
-		}
-	}
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Lambda resource stack creation using Amplify CLI",
+  "Parameters": {
+    "env": {
+      "Type": "String",
+      "Default": "Prod"
+    },
+    "name": {
+      "Type": "String",
+      "Default": "awssyncroutes"
+    },
+    "deploymentBucketName": {
+      "Type": "String"
+    },
+    "s3Key": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "SNSTopic": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "DisplayName": {
+          "Fn::Sub": "${name}-${env}"
+        },
+        "TopicName": {
+          "Fn::Sub": "${name}-${env}"
+        }
+      }
+    },
+    "LambdaFunction": {
+      "DependsOn": [
+        "SNSTopic"
+      ],
+      "Type": "AWS::Lambda::Function",
+      "Metadata": {
+        "aws:asset:path": "./src",
+        "aws:asset:property": "Code"
+      },
+      "Properties": {
+        "Handler": "index.handler",
+        "FunctionName": {
+          "Fn::Sub": "${name}-${env}"
+        },
+        "Environment": {
+          "Variables": {
+            "ENV": {
+              "Ref": "env"
+            },
+            "SNS_TOPIC_ARN": {
+              "Ref": "SNSTopic"
+            }
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
+        "Timeout": 25,
+        "Code": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": {
+            "Ref": "s3Key"
+          }
+        }
+      }
+    },
+    "LambdaExecutionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "RoleName": {
+          "Fn::Sub": "${name}-${env}-LambdaRole"
+        },
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "LambdaExecutionPolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
+              "Resource": {
+                "Fn::Sub": [
+                  "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${lambda}:log-stream:*",
+                  {
+                    "lambda": {
+                      "Ref": "LambdaFunction"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "ec2:DescribeRouteTables"
+              ],
+              "Resource": "*"
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "ec2:CreateRoute",
+                "ec2:ReplaceRoute"
+              ],
+              "Resource": {
+                "Fn::Sub": "arn:${AWS::Partition}:ec2:${AWS::Region}:${AWS::AccountId}:route-table/*"
+              }
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "sns:Publish"
+              ],
+              "Resource": {
+                "Ref": "SNSTopic"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "Name": {
+      "Value": {
+        "Ref": "LambdaFunction"
+      }
+    },
+    "Arn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "LambdaFunction",
+          "Arn"
+        ]
+      }
+    },
+    "Region": {
+      "Value": {
+        "Ref": "AWS::Region"
+      }
+    }
+  }
 }
