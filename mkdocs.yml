@@ -10,7 +10,7 @@ site_url: 'https://awslabs.github.io/aws-sync-routes/'
 repo_name: 'aws-sync-routes'
 repo_url: 'https://github.com/awslabs/aws-sync-routes'
 remote_branch: 'gh-pages'
-edit_uri: 'blob/master/docs/'
+edit_uri: 'blob/main/docs/'
 
 # Copyright
 copyright: 'Copyright 2019 - 2021, Amazon Web Services, Inc. or its affiliates. All rights reserved.'
