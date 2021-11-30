@@ -210,6 +210,8 @@ First try decreasing the frequency of API calls. If that is unteneble, please op
 .
 ├── .github/
 │   └── PULL_REQUEST_TEMPLATE.md
+├── .vscode/
+│   └── settings.json
 ├── amplify/
 │   ├── #current-cloud-backend/
 │   ├── .config/
@@ -219,6 +221,7 @@ First try decreasing the frequency of API calls. If that is unteneble, please op
 │   ├── backend/
 │   │   ├── api/
 │   │   │   └── awssyncroutes/
+│   │   │       ├── api-params.json
 │   │   │       ├── awssyncroutes-cloudformation-template.json
 │   │   │       └── parameters.json
 │   │   ├── awscloudformation/
@@ -232,11 +235,13 @@ First try decreasing the frequency of API calls. If that is unteneble, please op
 │   │   │       │   ├── index.js
 │   │   │       │   ├── package-lock.json
 │   │   │       │   └── package.json
+│   │   │       ├── amplify.state
 │   │   │       ├── awssyncroutes-cloudformation-template.json
 │   │   │       └── parameters.json
 │   │   ├── amplify-meta.json
 │   │   └── backend-config.json
 │   └── team-provider-info.json
+│   └── README.md
 ├── docs/
 │   ├── about/
 │   │   ├── contributing.md -> ../../CONTRIBUTING.md
@@ -248,10 +253,12 @@ First try decreasing the frequency of API calls. If that is unteneble, please op
 │   │   ├── 0004-api-key.md
 │   │   ├── 0005-uri.md
 │   │   └── 0006-specificity.md
+│   ├── stylesheets/
+│   │   └── extra.css
 │   ├── Architecture.png -> ../Architecture.png
 │   ├── InfrastructureAsCode.png -> ../InfrastructureAsCode.png
-│   └── index.md -> ../README.md
-├── material/
+│   └── index.md -> ../README.md*
+├── material.bak/
 │   ├── assets/
 │   │   └── stylesheets/
 │   │       ├── application-palette.css
@@ -269,10 +276,12 @@ First try decreasing the frequency of API calls. If that is unteneble, please op
 ├── .gitignore
 ├── .markdownlint.yml
 ├── Architecture.png
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
 ├── InfrastructureAsCode.png
 ├── LICENSE
 ├── NOTICE
-├── README.md
+├── README.md*
 └── mkdocs.yml
 ```
 
