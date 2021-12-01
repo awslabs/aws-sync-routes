@@ -48,6 +48,7 @@ theme:
   font: false
   icon:
     logo: 'material/home'
+    repo: 'fontawesome/brands/github'
 
 extra_css:
   - stylesheets/extra.css
