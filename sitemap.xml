@@ -2,47 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://awslabs.github.io/aws-sync-routes/</loc>
-         <lastmod>2022-03-02</lastmod>
+         <lastmod>2023-01-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://awslabs.github.io/aws-sync-routes/about/contributing/</loc>
-         <lastmod>2022-03-02</lastmod>
+         <lastmod>2023-01-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://awslabs.github.io/aws-sync-routes/about/license/</loc>
-         <lastmod>2022-03-02</lastmod>
+         <lastmod>2023-01-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://awslabs.github.io/aws-sync-routes/adr/0001-record-architecture-decisions/</loc>
-         <lastmod>2022-03-02</lastmod>
+         <lastmod>2023-01-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://awslabs.github.io/aws-sync-routes/adr/0002-aws-amplify-cli-toolchain/</loc>
-         <lastmod>2022-03-02</lastmod>
+         <lastmod>2023-01-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://awslabs.github.io/aws-sync-routes/adr/0003-http-patch-method/</loc>
-         <lastmod>2022-03-02</lastmod>
+         <lastmod>2023-01-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://awslabs.github.io/aws-sync-routes/adr/0004-api-key/</loc>
-         <lastmod>2022-03-02</lastmod>
+         <lastmod>2023-01-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://awslabs.github.io/aws-sync-routes/adr/0005-uri/</loc>
-         <lastmod>2022-03-02</lastmod>
+         <lastmod>2023-01-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://awslabs.github.io/aws-sync-routes/adr/0006-specificity/</loc>
-         <lastmod>2022-03-02</lastmod>
+         <lastmod>2023-01-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
